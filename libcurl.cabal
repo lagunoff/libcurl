@@ -1,0 +1,69 @@
+cabal-version: 2.4
+
+name: libcurl
+version: 0.1.0.0
+build-type: Simple
+
+library
+  default-language: GHC2021
+  hs-source-dirs: src
+  exposed-modules:
+    LibCurl
+    LibCurl.Constants
+  Extra-libraries:  curl
+  ghc-options:
+    -Wall -Wno-missing-signatures -Wno-name-shadowing
+    -Wno-unused-do-bind -Wno-partial-type-signatures -Wno-missing-home-modules
+  default-extensions:
+    AllowAmbiguousTypes
+    BangPatterns
+    BlockArguments
+    ConstraintKinds
+    DataKinds
+    DefaultSignatures
+    DeriveAnyClass
+    DeriveFunctor
+    DeriveGeneric
+    DerivingStrategies
+    DerivingVia
+    DoAndIfThenElse
+    DuplicateRecordFields
+    EmptyCase
+    EmptyDataDecls
+    FlexibleContexts
+    FlexibleInstances
+    ForeignFunctionInterface
+    FunctionalDependencies
+    GADTs
+    GeneralizedNewtypeDeriving
+    ImplicitParams
+    ImportQualifiedPost
+    LambdaCase
+    MultiWayIf
+    NamedFieldPuns
+    OverloadedLabels
+    OverloadedRecordDot
+    OverloadedStrings
+    PackageImports
+    PartialTypeSignatures
+    PatternGuards
+    PolyKinds
+    QuantifiedConstraints
+    QuasiQuotes
+    RankNTypes
+    RecordWildCards
+    RecursiveDo
+    ScopedTypeVariables
+    StandaloneDeriving
+    StrictData
+    TemplateHaskell
+    TemplateHaskellQuotes
+    TupleSections
+    TypeApplications
+    TypeFamilies
+    TypeOperators
+    UndecidableInstances
+    ViewPatterns
+  build-depends:
+    bytestring,
+    base,
