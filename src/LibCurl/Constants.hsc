@@ -1339,3 +1339,21 @@ printCurlCode c
   | c == cURLE_UNRECOVERABLE_POLL = "CURLE_UNRECOVERABLE_POLL"
   | c == cURLE_TOO_LARGE = "CURLE_TOO_LARGE"
   | otherwise = "Invalid CURLcode!"
+
+newtype CURLHttpVersion = CURLHttpVersion {unCURLHttpVersion :: CLong}
+
+cURL_HTTP_VERSION_NONE = CURLHttpVersion #{const CURL_HTTP_VERSION_NONE} {- setting this means we don't care, and that we'd
+                           like the library to choose the best possible
+                           for us! -}
+cURL_HTTP_VERSION_1_0 = CURLHttpVersion #{const CURL_HTTP_VERSION_1_0} {- please use HTTP 1.0 in the request -}
+cURL_HTTP_VERSION_1_1 = CURLHttpVersion #{const CURL_HTTP_VERSION_1_1} {- please use HTTP 1.1 in the request -}
+cURL_HTTP_VERSION_2_0 = CURLHttpVersion #{const CURL_HTTP_VERSION_2_0} {- please use HTTP 2 in the request -}
+cURL_HTTP_VERSION_2TLS = CURLHttpVersion #{const CURL_HTTP_VERSION_2TLS} {- use version 2 for HTTPS, version 1.1 for HTTP -}
+cURL_HTTP_VERSION_2_PRIOR_KNOWLEDGE = CURLHttpVersion #{const CURL_HTTP_VERSION_2_PRIOR_KNOWLEDGE} {- please use HTTP 2 without HTTP/1.1
+                                         Upgrade -}
+cURL_HTTP_VERSION_3 = CURLHttpVersion #{const CURL_HTTP_VERSION_3} {- Use HTTP/3, fallback to HTTP/2 or HTTP/1 if
+                             needed. For HTTPS only. For HTTP, this option
+                             makes libcurl return error. -}
+cURL_HTTP_VERSION_3ONLY = CURLHttpVersion #{const CURL_HTTP_VERSION_3ONLY} {- Use HTTP/3 without fallback. For HTTPS
+                                 only. For HTTP, this makes libcurl
+                                 return error. -}

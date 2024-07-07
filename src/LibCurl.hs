@@ -52,6 +52,9 @@ foreign import ccall "curl_easy_init"
 foreign import ccall "curl_easy_cleanup"
   curl_easy_cleanup :: Ptr Curl -> IO ()
 
+foreign import ccall "curl_easy_reset"
+  curl_easy_reset :: Ptr Curl -> IO ()
+
 foreign import ccall "curl_easy_perform"
   curl_easy_perform :: Ptr Curl -> IO CURLcode
 
@@ -84,11 +87,13 @@ data CurlResponse = CurlResponse
   } deriving (Show, Generic)
 
 curl :: CurlRequest -> IO CurlResponse
-curl o = do
+curl req = withCurlHandle \hdl -> curlHdl hdl req
+
+curlHdl :: Ptr Curl -> CurlRequest -> IO CurlResponse
+curlHdl hdl o = do
   bodyChunksRef <- newIORef []
   headerChunksRef <- newIORef []
-  withCurlHandle \hdl ->
-    withCurlSlist o.headers \hdrs ->
+  withCurlSlist o.headers \hdrs ->
     BS.useAsCString o.url \urlz ->
     withCURLCallback (collectChunksCallback bodyChunksRef) \writeBodyCb ->
     withCURLCallback (collectChunksCallback headerChunksRef) \writeHeaderCb ->
@@ -105,6 +110,7 @@ curl o = do
       when o.verbose $ curl_easy_setopt_long hdl cURLOPT_VERBOSE 1
       code <- curl_easy_perform hdl
       status <- curlEasyGetinfoLong hdl cURLINFO_RESPONSE_CODE
+      curl_easy_reset hdl
       bodyChunks <- readIORef bodyChunksRef
       headerChunks <- readIORef headerChunksRef
       return CurlResponse
