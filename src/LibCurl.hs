@@ -61,6 +61,7 @@ data CurlRequest = CurlRequest
   { url :: ByteString
   , method :: CurlMethod
   , headers :: [String]
+  , verbose :: Bool
   } deriving (Show, Generic)
 
 foreign import ccall "curl_easy_setopt"
@@ -101,6 +102,7 @@ curl o = do
       curl_easy_setopt_slist hdl cURLOPT_HTTPHEADER hdrs
       curl_easy_setopt_fun hdl cURLOPT_WRITEFUNCTION writeBodyCb
       curl_easy_setopt_fun hdl cURLOPT_HEADERFUNCTION writeHeaderCb
+      when o.verbose $ curl_easy_setopt_long hdl cURLOPT_VERBOSE 1
       code <- curl_easy_perform hdl
       status <- curlEasyGetinfoLong hdl cURLINFO_RESPONSE_CODE
       bodyChunks <- readIORef bodyChunksRef
