@@ -53,7 +53,7 @@ foreign import ccall "curl_easy_cleanup"
   curl_easy_cleanup :: Ptr Curl -> IO ()
 
 foreign import ccall "curl_easy_perform"
-  curl_easy_perform :: Ptr Curl -> IO CInt
+  curl_easy_perform :: Ptr Curl -> IO CURLcode
 
 data CurlMethod = CurlGET | CurlPOST ByteString deriving Show
 
@@ -76,7 +76,7 @@ foreign import ccall "curl_easy_setopt"
   curl_easy_setopt_fun :: Ptr Curl -> CURLoption -> FunPtr a -> IO ()
 
 data CurlResponse = CurlResponse
-  { code :: CInt
+  { code :: CURLcode
   , status :: CLong
   , headers :: [ByteString]
   , body :: BSL.ByteString

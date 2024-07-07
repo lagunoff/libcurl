@@ -1103,3 +1103,239 @@ cURLINFO_XFER_ID = CURLINFO #{const CURLINFO_XFER_ID}
 cURLINFO_CONN_ID = CURLINFO #{const CURLINFO_CONN_ID}
 cURLINFO_QUEUE_TIME_T = CURLINFO #{const CURLINFO_QUEUE_TIME_T}
 cURLINFO_USED_PROXY = CURLINFO #{const CURLINFO_USED_PROXY}
+
+newtype CURLcode = CURLcode {unCURLcode :: CInt}
+  deriving newtype (Eq, Ord, Show)
+
+cURLE_OK = CURLcode #{const CURLE_OK}
+cURLE_UNSUPPORTED_PROTOCOL = CURLcode #{const CURLE_UNSUPPORTED_PROTOCOL}    {- 1 -}
+cURLE_FAILED_INIT = CURLcode #{const CURLE_FAILED_INIT}             {- 2 -}
+cURLE_URL_MALFORMAT = CURLcode #{const CURLE_URL_MALFORMAT}           {- 3 -}
+cURLE_NOT_BUILT_IN = CURLcode #{const CURLE_NOT_BUILT_IN}            {- 4 - [was obsoleted in August 2007 for
+                                  7.17.0, reused in April 2011 for 7.21.5] -}
+cURLE_COULDNT_RESOLVE_PROXY = CURLcode #{const CURLE_COULDNT_RESOLVE_PROXY}   {- 5 -}
+cURLE_COULDNT_RESOLVE_HOST = CURLcode #{const CURLE_COULDNT_RESOLVE_HOST}    {- 6 -}
+cURLE_COULDNT_CONNECT = CURLcode #{const CURLE_COULDNT_CONNECT}         {- 7 -}
+cURLE_WEIRD_SERVER_REPLY = CURLcode #{const CURLE_WEIRD_SERVER_REPLY}      {- 8 -}
+cURLE_REMOTE_ACCESS_DENIED = CURLcode #{const CURLE_REMOTE_ACCESS_DENIED}    {- 9 a service was denied by the server
+                                  due to lack of access - when login fails
+                                  this is not returned. -}
+cURLE_FTP_ACCEPT_FAILED = CURLcode #{const CURLE_FTP_ACCEPT_FAILED}       {- 10 - [was obsoleted in April 2006 for
+                                  7.15.4, reused in Dec 2011 for 7.24.0]-}
+cURLE_FTP_WEIRD_PASS_REPLY = CURLcode #{const CURLE_FTP_WEIRD_PASS_REPLY}    {- 11 -}
+cURLE_FTP_ACCEPT_TIMEOUT = CURLcode #{const CURLE_FTP_ACCEPT_TIMEOUT}      {- 12 - timeout occurred accepting server
+                                  [was obsoleted in August 2007 for 7.17.0,
+                                  reused in Dec 2011 for 7.24.0]-}
+cURLE_FTP_WEIRD_PASV_REPLY = CURLcode #{const CURLE_FTP_WEIRD_PASV_REPLY}    {- 13 -}
+cURLE_FTP_WEIRD_227_FORMAT = CURLcode #{const CURLE_FTP_WEIRD_227_FORMAT}    {- 14 -}
+cURLE_FTP_CANT_GET_HOST = CURLcode #{const CURLE_FTP_CANT_GET_HOST}       {- 15 -}
+cURLE_HTTP2 = CURLcode #{const CURLE_HTTP2}                   {- 16 - A problem in the http2 framing layer.
+                                  [was obsoleted in August 2007 for 7.17.0,
+                                  reused in July 2014 for 7.38.0] -}
+cURLE_FTP_COULDNT_SET_TYPE = CURLcode #{const CURLE_FTP_COULDNT_SET_TYPE}    {- 17 -}
+cURLE_PARTIAL_FILE = CURLcode #{const CURLE_PARTIAL_FILE}            {- 18 -}
+cURLE_FTP_COULDNT_RETR_FILE = CURLcode #{const CURLE_FTP_COULDNT_RETR_FILE}   {- 19 -}
+cURLE_OBSOLETE20 = CURLcode #{const CURLE_OBSOLETE20}              {- 20 - NOT USED -}
+cURLE_QUOTE_ERROR = CURLcode #{const CURLE_QUOTE_ERROR}             {- 21 - quote command failure -}
+cURLE_HTTP_RETURNED_ERROR = CURLcode #{const CURLE_HTTP_RETURNED_ERROR}     {- 22 -}
+cURLE_WRITE_ERROR = CURLcode #{const CURLE_WRITE_ERROR}             {- 23 -}
+cURLE_OBSOLETE24 = CURLcode #{const CURLE_OBSOLETE24}              {- 24 - NOT USED -}
+cURLE_UPLOAD_FAILED = CURLcode #{const CURLE_UPLOAD_FAILED}           {- 25 - failed upload "command" -}
+cURLE_READ_ERROR = CURLcode #{const CURLE_READ_ERROR}              {- 26 - couldn't open/read from file -}
+cURLE_OUT_OF_MEMORY = CURLcode #{const CURLE_OUT_OF_MEMORY}           {- 27 -}
+cURLE_OPERATION_TIMEDOUT = CURLcode #{const CURLE_OPERATION_TIMEDOUT}      {- 28 - the timeout time was reached -}
+cURLE_OBSOLETE29 = CURLcode #{const CURLE_OBSOLETE29}              {- 29 - NOT USED -}
+cURLE_FTP_PORT_FAILED = CURLcode #{const CURLE_FTP_PORT_FAILED}         {- 30 - FTP PORT operation failed -}
+cURLE_FTP_COULDNT_USE_REST = CURLcode #{const CURLE_FTP_COULDNT_USE_REST}    {- 31 - the REST command failed -}
+cURLE_OBSOLETE32 = CURLcode #{const CURLE_OBSOLETE32}              {- 32 - NOT USED -}
+cURLE_RANGE_ERROR = CURLcode #{const CURLE_RANGE_ERROR}             {- 33 - RANGE "command" didn't work -}
+cURLE_HTTP_POST_ERROR = CURLcode #{const CURLE_HTTP_POST_ERROR}         {- 34 -}
+cURLE_SSL_CONNECT_ERROR = CURLcode #{const CURLE_SSL_CONNECT_ERROR}       {- 35 - wrong when connecting with SSL -}
+cURLE_BAD_DOWNLOAD_RESUME = CURLcode #{const CURLE_BAD_DOWNLOAD_RESUME}     {- 36 - couldn't resume download -}
+cURLE_FILE_COULDNT_READ_FILE = CURLcode #{const CURLE_FILE_COULDNT_READ_FILE}  {- 37 -}
+cURLE_LDAP_CANNOT_BIND = CURLcode #{const CURLE_LDAP_CANNOT_BIND}        {- 38 -}
+cURLE_LDAP_SEARCH_FAILED = CURLcode #{const CURLE_LDAP_SEARCH_FAILED}      {- 39 -}
+cURLE_OBSOLETE40 = CURLcode #{const CURLE_OBSOLETE40}              {- 40 - NOT USED -}
+cURLE_FUNCTION_NOT_FOUND = CURLcode #{const CURLE_FUNCTION_NOT_FOUND}      {- 41 - NOT USED starting with 7.53.0 -}
+cURLE_ABORTED_BY_CALLBACK = CURLcode #{const CURLE_ABORTED_BY_CALLBACK}     {- 42 -}
+cURLE_BAD_FUNCTION_ARGUMENT = CURLcode #{const CURLE_BAD_FUNCTION_ARGUMENT}   {- 43 -}
+cURLE_OBSOLETE44 = CURLcode #{const CURLE_OBSOLETE44}              {- 44 - NOT USED -}
+cURLE_INTERFACE_FAILED = CURLcode #{const CURLE_INTERFACE_FAILED}        {- 45 - CURLOPT_INTERFACE failed -}
+cURLE_OBSOLETE46 = CURLcode #{const CURLE_OBSOLETE46}              {- 46 - NOT USED -}
+cURLE_TOO_MANY_REDIRECTS = CURLcode #{const CURLE_TOO_MANY_REDIRECTS}      {- 47 - catch endless re-direct loops -}
+cURLE_UNKNOWN_OPTION = CURLcode #{const CURLE_UNKNOWN_OPTION}          {- 48 - User specified an unknown option -}
+cURLE_SETOPT_OPTION_SYNTAX = CURLcode #{const CURLE_SETOPT_OPTION_SYNTAX}    {- 49 - Malformed setopt option -}
+cURLE_OBSOLETE50 = CURLcode #{const CURLE_OBSOLETE50}              {- 50 - NOT USED -}
+cURLE_OBSOLETE51 = CURLcode #{const CURLE_OBSOLETE51}              {- 51 - NOT USED -}
+cURLE_GOT_NOTHING = CURLcode #{const CURLE_GOT_NOTHING}             {- 52 - when this is a specific error -}
+cURLE_SSL_ENGINE_NOTFOUND = CURLcode #{const CURLE_SSL_ENGINE_NOTFOUND}     {- 53 - SSL crypto engine not found -}
+cURLE_SSL_ENGINE_SETFAILED = CURLcode #{const CURLE_SSL_ENGINE_SETFAILED}    {- 54 - can not set SSL crypto engine as
+                                  default -}
+cURLE_SEND_ERROR = CURLcode #{const CURLE_SEND_ERROR}              {- 55 - failed sending network data -}
+cURLE_RECV_ERROR = CURLcode #{const CURLE_RECV_ERROR}              {- 56 - failure in receiving network data -}
+cURLE_OBSOLETE57 = CURLcode #{const CURLE_OBSOLETE57}              {- 57 - NOT IN USE -}
+cURLE_SSL_CERTPROBLEM = CURLcode #{const CURLE_SSL_CERTPROBLEM}         {- 58 - problem with the local certificate -}
+cURLE_SSL_CIPHER = CURLcode #{const CURLE_SSL_CIPHER}              {- 59 - couldn't use specified cipher -}
+cURLE_PEER_FAILED_VERIFICATION = CURLcode #{const CURLE_PEER_FAILED_VERIFICATION} {- 60 - peer's certificate or fingerprint
+                                   wasn't verified fine -}
+cURLE_BAD_CONTENT_ENCODING = CURLcode #{const CURLE_BAD_CONTENT_ENCODING}    {- 61 - Unrecognized/bad encoding -}
+cURLE_OBSOLETE62 = CURLcode #{const CURLE_OBSOLETE62}              {- 62 - NOT IN USE since 7.82.0 -}
+cURLE_FILESIZE_EXCEEDED = CURLcode #{const CURLE_FILESIZE_EXCEEDED}       {- 63 - Maximum file size exceeded -}
+cURLE_USE_SSL_FAILED = CURLcode #{const CURLE_USE_SSL_FAILED}          {- 64 - Requested FTP SSL level failed -}
+cURLE_SEND_FAIL_REWIND = CURLcode #{const CURLE_SEND_FAIL_REWIND}        {- 65 - Sending the data requires a rewind
+                                  that failed -}
+cURLE_SSL_ENGINE_INITFAILED = CURLcode #{const CURLE_SSL_ENGINE_INITFAILED}   {- 66 - failed to initialise ENGINE -}
+cURLE_LOGIN_DENIED = CURLcode #{const CURLE_LOGIN_DENIED}            {- 67 - user, password or similar was not
+                                  accepted and we failed to login -}
+cURLE_TFTP_NOTFOUND = CURLcode #{const CURLE_TFTP_NOTFOUND}           {- 68 - file not found on server -}
+cURLE_TFTP_PERM = CURLcode #{const CURLE_TFTP_PERM}               {- 69 - permission problem on server -}
+cURLE_REMOTE_DISK_FULL = CURLcode #{const CURLE_REMOTE_DISK_FULL}        {- 70 - out of disk space on server -}
+cURLE_TFTP_ILLEGAL = CURLcode #{const CURLE_TFTP_ILLEGAL}            {- 71 - Illegal TFTP operation -}
+cURLE_TFTP_UNKNOWNID = CURLcode #{const CURLE_TFTP_UNKNOWNID}          {- 72 - Unknown transfer ID -}
+cURLE_REMOTE_FILE_EXISTS = CURLcode #{const CURLE_REMOTE_FILE_EXISTS}      {- 73 - File already exists -}
+cURLE_TFTP_NOSUCHUSER = CURLcode #{const CURLE_TFTP_NOSUCHUSER}         {- 74 - No such user -}
+cURLE_OBSOLETE75 = CURLcode #{const CURLE_OBSOLETE75}              {- 75 - NOT IN USE since 7.82.0 -}
+cURLE_OBSOLETE76 = CURLcode #{const CURLE_OBSOLETE76}              {- 76 - NOT IN USE since 7.82.0 -}
+cURLE_SSL_CACERT_BADFILE = CURLcode #{const CURLE_SSL_CACERT_BADFILE}      {- 77 - could not load CACERT file, missing
+                                  or wrong format -}
+cURLE_REMOTE_FILE_NOT_FOUND = CURLcode #{const CURLE_REMOTE_FILE_NOT_FOUND}   {- 78 - remote file not found -}
+cURLE_SSH = CURLcode #{const CURLE_SSH}                     {- 79 - error from the SSH layer, somewhat
+                                  generic so the error message will be of
+                                  interest when this has happened -}
+
+cURLE_SSL_SHUTDOWN_FAILED = CURLcode #{const CURLE_SSL_SHUTDOWN_FAILED}     {- 80 - Failed to shut down the SSL
+                                  connection -}
+cURLE_AGAIN = CURLcode #{const CURLE_AGAIN}                   {- 81 - socket is not ready for send/recv,
+                                  wait till it's ready and try again (Added
+                                  in 7.18.2) -}
+cURLE_SSL_CRL_BADFILE = CURLcode #{const CURLE_SSL_CRL_BADFILE}         {- 82 - could not load CRL file, missing or
+                                  wrong format (Added in 7.19.0) -}
+cURLE_SSL_ISSUER_ERROR = CURLcode #{const CURLE_SSL_ISSUER_ERROR}        {- 83 - Issuer check failed.  (Added in
+                                  7.19.0) -}
+cURLE_FTP_PRET_FAILED = CURLcode #{const CURLE_FTP_PRET_FAILED}         {- 84 - a PRET command failed -}
+cURLE_RTSP_CSEQ_ERROR = CURLcode #{const CURLE_RTSP_CSEQ_ERROR}         {- 85 - mismatch of RTSP CSeq numbers -}
+cURLE_RTSP_SESSION_ERROR = CURLcode #{const CURLE_RTSP_SESSION_ERROR}      {- 86 - mismatch of RTSP Session Ids -}
+cURLE_FTP_BAD_FILE_LIST = CURLcode #{const CURLE_FTP_BAD_FILE_LIST}       {- 87 - unable to parse FTP file list -}
+cURLE_CHUNK_FAILED = CURLcode #{const CURLE_CHUNK_FAILED}            {- 88 - chunk callback reported error -}
+cURLE_NO_CONNECTION_AVAILABLE = CURLcode #{const CURLE_NO_CONNECTION_AVAILABLE} {- 89 - No connection available, the
+                                  session will be queued -}
+cURLE_SSL_PINNEDPUBKEYNOTMATCH = CURLcode #{const CURLE_SSL_PINNEDPUBKEYNOTMATCH} {- 90 - specified pinned public key did not
+                                   match -}
+cURLE_SSL_INVALIDCERTSTATUS = CURLcode #{const CURLE_SSL_INVALIDCERTSTATUS}   {- 91 - invalid certificate status -}
+cURLE_HTTP2_STREAM = CURLcode #{const CURLE_HTTP2_STREAM}            {- 92 - stream error in HTTP/2 framing layer
+                                  -}
+cURLE_RECURSIVE_API_CALL = CURLcode #{const CURLE_RECURSIVE_API_CALL}      {- 93 - an api function was called from
+                                  inside a callback -}
+cURLE_AUTH_ERROR = CURLcode #{const CURLE_AUTH_ERROR}              {- 94 - an authentication function returned an
+                                  error -}
+cURLE_HTTP3 = CURLcode #{const CURLE_HTTP3}                   {- 95 - An HTTP/3 layer problem -}
+cURLE_QUIC_CONNECT_ERROR = CURLcode #{const CURLE_QUIC_CONNECT_ERROR}      {- 96 - QUIC connection error -}
+cURLE_PROXY = CURLcode #{const CURLE_PROXY}                   {- 97 - proxy handshake error -}
+cURLE_SSL_CLIENTCERT = CURLcode #{const CURLE_SSL_CLIENTCERT}          {- 98 - client-side certificate required -}
+cURLE_UNRECOVERABLE_POLL = CURLcode #{const CURLE_UNRECOVERABLE_POLL}      {- 99 - poll/select returned fatal error -}
+cURLE_TOO_LARGE = CURLcode #{const CURLE_TOO_LARGE}               {- 100 - a value/data met its maximum -}
+
+printCurlCode :: CURLcode -> String
+printCurlCode c
+  | c == cURLE_OK = "CURLE_OK"
+  | c == cURLE_UNSUPPORTED_PROTOCOL = "CURLE_UNSUPPORTED_PROTOCOL"
+  | c == cURLE_FAILED_INIT = "CURLE_FAILED_INIT"
+  | c == cURLE_URL_MALFORMAT = "CURLE_URL_MALFORMAT"
+  | c == cURLE_NOT_BUILT_IN = "CURLE_NOT_BUILT_IN"
+  | c == cURLE_COULDNT_RESOLVE_PROXY = "CURLE_COULDNT_RESOLVE_PROXY"
+  | c == cURLE_COULDNT_RESOLVE_HOST = "CURLE_COULDNT_RESOLVE_HOST"
+  | c == cURLE_COULDNT_CONNECT = "CURLE_COULDNT_CONNECT"
+  | c == cURLE_WEIRD_SERVER_REPLY = "CURLE_WEIRD_SERVER_REPLY"
+  | c == cURLE_REMOTE_ACCESS_DENIED = "CURLE_REMOTE_ACCESS_DENIED"
+  | c == cURLE_FTP_ACCEPT_FAILED = "CURLE_FTP_ACCEPT_FAILED"
+  | c == cURLE_FTP_WEIRD_PASS_REPLY = "CURLE_FTP_WEIRD_PASS_REPLY"
+  | c == cURLE_FTP_ACCEPT_TIMEOUT = "CURLE_FTP_ACCEPT_TIMEOUT"
+  | c == cURLE_FTP_WEIRD_PASV_REPLY = "CURLE_FTP_WEIRD_PASV_REPLY"
+  | c == cURLE_FTP_WEIRD_227_FORMAT = "CURLE_FTP_WEIRD_227_FORMAT"
+  | c == cURLE_FTP_CANT_GET_HOST = "CURLE_FTP_CANT_GET_HOST"
+  | c == cURLE_HTTP2 = "CURLE_HTTP2"
+  | c == cURLE_FTP_COULDNT_SET_TYPE = "CURLE_FTP_COULDNT_SET_TYPE"
+  | c == cURLE_PARTIAL_FILE = "CURLE_PARTIAL_FILE"
+  | c == cURLE_FTP_COULDNT_RETR_FILE = "CURLE_FTP_COULDNT_RETR_FILE"
+  | c == cURLE_OBSOLETE20 = "CURLE_OBSOLETE20"
+  | c == cURLE_QUOTE_ERROR = "CURLE_QUOTE_ERROR"
+  | c == cURLE_HTTP_RETURNED_ERROR = "CURLE_HTTP_RETURNED_ERROR"
+  | c == cURLE_WRITE_ERROR = "CURLE_WRITE_ERROR"
+  | c == cURLE_OBSOLETE24 = "CURLE_OBSOLETE24"
+  | c == cURLE_UPLOAD_FAILED = "CURLE_UPLOAD_FAILED"
+  | c == cURLE_READ_ERROR = "CURLE_READ_ERROR"
+  | c == cURLE_OUT_OF_MEMORY = "CURLE_OUT_OF_MEMORY"
+  | c == cURLE_OPERATION_TIMEDOUT = "CURLE_OPERATION_TIMEDOUT"
+  | c == cURLE_OBSOLETE29 = "CURLE_OBSOLETE29"
+  | c == cURLE_FTP_PORT_FAILED = "CURLE_FTP_PORT_FAILED"
+  | c == cURLE_FTP_COULDNT_USE_REST = "CURLE_FTP_COULDNT_USE_REST"
+  | c == cURLE_OBSOLETE32 = "CURLE_OBSOLETE32"
+  | c == cURLE_RANGE_ERROR = "CURLE_RANGE_ERROR"
+  | c == cURLE_HTTP_POST_ERROR = "CURLE_HTTP_POST_ERROR"
+  | c == cURLE_SSL_CONNECT_ERROR = "CURLE_SSL_CONNECT_ERROR"
+  | c == cURLE_BAD_DOWNLOAD_RESUME = "CURLE_BAD_DOWNLOAD_RESUME"
+  | c == cURLE_FILE_COULDNT_READ_FILE = "CURLE_FILE_COULDNT_READ_FILE"
+  | c == cURLE_LDAP_CANNOT_BIND = "CURLE_LDAP_CANNOT_BIND"
+  | c == cURLE_LDAP_SEARCH_FAILED = "CURLE_LDAP_SEARCH_FAILED"
+  | c == cURLE_OBSOLETE40 = "CURLE_OBSOLETE40"
+  | c == cURLE_FUNCTION_NOT_FOUND = "CURLE_FUNCTION_NOT_FOUND"
+  | c == cURLE_ABORTED_BY_CALLBACK = "CURLE_ABORTED_BY_CALLBACK"
+  | c == cURLE_BAD_FUNCTION_ARGUMENT = "CURLE_BAD_FUNCTION_ARGUMENT"
+  | c == cURLE_OBSOLETE44 = "CURLE_OBSOLETE44"
+  | c == cURLE_INTERFACE_FAILED = "CURLE_INTERFACE_FAILED"
+  | c == cURLE_OBSOLETE46 = "CURLE_OBSOLETE46"
+  | c == cURLE_TOO_MANY_REDIRECTS = "CURLE_TOO_MANY_REDIRECTS"
+  | c == cURLE_UNKNOWN_OPTION = "CURLE_UNKNOWN_OPTION"
+  | c == cURLE_SETOPT_OPTION_SYNTAX = "CURLE_SETOPT_OPTION_SYNTAX"
+  | c == cURLE_OBSOLETE50 = "CURLE_OBSOLETE50"
+  | c == cURLE_OBSOLETE51 = "CURLE_OBSOLETE51"
+  | c == cURLE_GOT_NOTHING = "CURLE_GOT_NOTHING"
+  | c == cURLE_SSL_ENGINE_NOTFOUND = "CURLE_SSL_ENGINE_NOTFOUND"
+  | c == cURLE_SSL_ENGINE_SETFAILED = "CURLE_SSL_ENGINE_SETFAILED"
+  | c == cURLE_SEND_ERROR = "CURLE_SEND_ERROR"
+  | c == cURLE_RECV_ERROR = "CURLE_RECV_ERROR"
+  | c == cURLE_OBSOLETE57 = "CURLE_OBSOLETE57"
+  | c == cURLE_SSL_CERTPROBLEM = "CURLE_SSL_CERTPROBLEM"
+  | c == cURLE_SSL_CIPHER = "CURLE_SSL_CIPHER"
+  | c == cURLE_PEER_FAILED_VERIFICATION = "CURLE_PEER_FAILED_VERIFICATION"
+  | c == cURLE_BAD_CONTENT_ENCODING = "CURLE_BAD_CONTENT_ENCODING"
+  | c == cURLE_OBSOLETE62 = "CURLE_OBSOLETE62"
+  | c == cURLE_FILESIZE_EXCEEDED = "CURLE_FILESIZE_EXCEEDED"
+  | c == cURLE_USE_SSL_FAILED = "CURLE_USE_SSL_FAILED"
+  | c == cURLE_SEND_FAIL_REWIND = "CURLE_SEND_FAIL_REWIND"
+  | c == cURLE_SSL_ENGINE_INITFAILED = "CURLE_SSL_ENGINE_INITFAILED"
+  | c == cURLE_LOGIN_DENIED = "CURLE_LOGIN_DENIED"
+  | c == cURLE_TFTP_NOTFOUND = "CURLE_TFTP_NOTFOUND"
+  | c == cURLE_TFTP_PERM = "CURLE_TFTP_PERM"
+  | c == cURLE_REMOTE_DISK_FULL = "CURLE_REMOTE_DISK_FULL"
+  | c == cURLE_TFTP_ILLEGAL = "CURLE_TFTP_ILLEGAL"
+  | c == cURLE_TFTP_UNKNOWNID = "CURLE_TFTP_UNKNOWNID"
+  | c == cURLE_REMOTE_FILE_EXISTS = "CURLE_REMOTE_FILE_EXISTS"
+  | c == cURLE_TFTP_NOSUCHUSER = "CURLE_TFTP_NOSUCHUSER"
+  | c == cURLE_OBSOLETE75 = "CURLE_OBSOLETE75"
+  | c == cURLE_OBSOLETE76 = "CURLE_OBSOLETE76"
+  | c == cURLE_SSL_CACERT_BADFILE = "CURLE_SSL_CACERT_BADFILE"
+  | c == cURLE_REMOTE_FILE_NOT_FOUND = "CURLE_REMOTE_FILE_NOT_FOUND"
+  | c == cURLE_SSH = "CURLE_SSH"
+  | c == cURLE_SSL_SHUTDOWN_FAILED = "CURLE_SSL_SHUTDOWN_FAILED"
+  | c == cURLE_AGAIN = "CURLE_AGAIN"
+  | c == cURLE_SSL_CRL_BADFILE = "CURLE_SSL_CRL_BADFILE"
+  | c == cURLE_SSL_ISSUER_ERROR = "CURLE_SSL_ISSUER_ERROR"
+  | c == cURLE_FTP_PRET_FAILED = "CURLE_FTP_PRET_FAILED"
+  | c == cURLE_RTSP_CSEQ_ERROR = "CURLE_RTSP_CSEQ_ERROR"
+  | c == cURLE_RTSP_SESSION_ERROR = "CURLE_RTSP_SESSION_ERROR"
+  | c == cURLE_FTP_BAD_FILE_LIST = "CURLE_FTP_BAD_FILE_LIST"
+  | c == cURLE_CHUNK_FAILED = "CURLE_CHUNK_FAILED"
+  | c == cURLE_NO_CONNECTION_AVAILABLE = "CURLE_NO_CONNECTION_AVAILABLE"
+  | c == cURLE_SSL_PINNEDPUBKEYNOTMATCH = "CURLE_SSL_PINNEDPUBKEYNOTMATCH"
+  | c == cURLE_SSL_INVALIDCERTSTATUS = "CURLE_SSL_INVALIDCERTSTATUS"
+  | c == cURLE_HTTP2_STREAM = "CURLE_HTTP2_STREAM"
+  | c == cURLE_RECURSIVE_API_CALL = "CURLE_RECURSIVE_API_CALL"
+  | c == cURLE_AUTH_ERROR = "CURLE_AUTH_ERROR"
+  | c == cURLE_HTTP3 = "CURLE_HTTP3"
+  | c == cURLE_QUIC_CONNECT_ERROR = "CURLE_QUIC_CONNECT_ERROR"
+  | c == cURLE_PROXY = "CURLE_PROXY"
+  | c == cURLE_SSL_CLIENTCERT = "CURLE_SSL_CLIENTCERT"
+  | c == cURLE_UNRECOVERABLE_POLL = "CURLE_UNRECOVERABLE_POLL"
+  | c == cURLE_TOO_LARGE = "CURLE_TOO_LARGE"
+  | otherwise = "Invalid CURLcode!"
